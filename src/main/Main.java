@@ -14,8 +14,8 @@ public class Main {
 
         RentalService rental1 = new RentalService(car, customer1, 5);
         RentalService rental2 = new RentalService(bike, customer2, 5);
-        System.out.println(rental1); rental1.toString();
+
+        System.out.println(rental1);
         System.out.println(rental2);
-        System.out.println("Are the vehicles same price per day? " + RentalService.compareVehicles(car, bike));
     }
 }

@@ -1,5 +1,7 @@
 package customer;
 
+import java.util.Objects;
+
 public class Customer {
     private String customerId;
     private String name;
@@ -44,5 +46,20 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer: " + name + " (ID: " + customerId + ", Phone: " + phone + ")";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(customerId, customer.customerId) &&
+                Objects.equals(name, customer.name) &&
+                Objects.equals(phone, customer.phone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(customerId, name, phone);
     }
 }

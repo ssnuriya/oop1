@@ -8,11 +8,6 @@ public class RentalService {
     private Customer customer;
     private int rentalDays;
 
-    public RentalService() {
-        this.vehicle = null;
-        this.customer = null;
-        this.rentalDays = 0;
-    }
     public RentalService(Vehicle vehicle, Customer customer, int rentalDays) {
         this.vehicle = vehicle;
         this.customer = customer;
@@ -54,12 +49,5 @@ public class RentalService {
                 vehicle + "\n" +
                 "Rental Days: " + rentalDays + "\n" +
                 "Total Price: $" + calculateTotalPrice() + "\n";
-    }
-
-    public static boolean compareVehicles(Vehicle vehicle1, Vehicle vehicle2) {
-       if (vehicle1.getPricePerDay() == vehicle2.getPricePerDay()) {
-           return true;
-       }
-       return false;
     }
 }
