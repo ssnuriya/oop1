@@ -1,8 +1,8 @@
 package main;
 
+import service.RentalService;
 import vehicle.Vehicle;
 import customer.Customer;
-import service.RentalService;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,10 +12,18 @@ public class Main {
         Customer customer1 = new Customer("C001", "John Doe", "1234567890");
         Customer customer2 = new Customer("C002", "Jane Smith", "0987654321");
 
-        RentalService rental1 = new RentalService(car, customer1, 5);
-        RentalService rental2 = new RentalService(bike, customer2, 5);
+        RentalService rentalService = new RentalService();
+        rentalService.addRental(car, customer1, 5);
+        rentalService.addRental(bike, customer2, 3);
 
-        System.out.println(rental1);
-        System.out.println(rental2);
+        System.out.println("All Rentals:");
+        System.out.println(rentalService);
+
+        System.out.println("\nFiltered Rentals (Price <= 30):");
+        rentalService.filterByPrice(30).forEach(System.out::println);
+
+        rentalService.sortRentalsByCustomerName();
+        System.out.println("\nSorted Rentals by Customer Name:");
+        System.out.println(rentalService);
     }
 }

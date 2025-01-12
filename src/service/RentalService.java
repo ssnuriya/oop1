@@ -3,51 +3,66 @@ package service;
 import vehicle.Vehicle;
 import customer.Customer;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class RentalService {
-    private Vehicle vehicle;
-    private Customer customer;
-    private int rentalDays;
+    private List<Rental> rentals;
 
-    public RentalService(Vehicle vehicle, Customer customer, int rentalDays) {
-        this.vehicle = vehicle;
-        this.customer = customer;
-        this.rentalDays = rentalDays;
+    public RentalService() {
+        rentals = new ArrayList<>();
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
+    public void addRental(Vehicle vehicle, Customer customer, int rentalDays) {
+        rentals.add(new Rental(vehicle, customer, rentalDays));
     }
 
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+    public List<Rental> filterByPrice(double maxPrice) {
+        return rentals.stream()
+                .filter(rental -> rental.getVehicle().getPricePerDay() <= maxPrice)
+                .collect(Collectors.toList());
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public void sortRentalsByCustomerName() {
+        rentals.sort((r1, r2) -> r1.getCustomer().getName().compareTo(r2.getCustomer().getName()));
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public int getRentalDays() {
-        return rentalDays;
-    }
-
-    public void setRentalDays(int rentalDays) {
-        this.rentalDays = rentalDays;
-    }
-
-    public double calculateTotalPrice() {
-        return rentalDays * vehicle.getPricePerDay();
+    public List<Rental> getRentals() {
+        return rentals;
     }
 
     @Override
     public String toString() {
-        return "Rental Details:\n" +
-                customer + "\n" +
-                vehicle + "\n" +
-                "Rental Days: " + rentalDays + "\n" +
-                "Total Price: $" + calculateTotalPrice() + "\n";
+        return rentals.stream().map(Rental::toString).collect(Collectors.joining("\n"));
+    }
+
+    public static class Rental {
+        private Vehicle vehicle;
+        private Customer customer;
+        private int rentalDays;
+
+        public Rental(Vehicle vehicle, Customer customer, int rentalDays) {
+            this.vehicle = vehicle;
+            this.customer = customer;
+            this.rentalDays = rentalDays;
+        }
+
+        public Vehicle getVehicle() {
+            return vehicle;
+        }
+
+        public Customer getCustomer() {
+            return customer;
+        }
+
+        public int getRentalDays() {
+            return rentalDays;
+        }
+
+        @Override
+        public String toString() {
+            return "Rental: " + customer + " | " + vehicle + " | Days: " + rentalDays;
+        }
     }
 }

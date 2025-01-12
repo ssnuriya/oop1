@@ -1,30 +1,15 @@
 package customer;
 
-import java.util.Objects;
+import core.NuriyaJava;
 
-public class Customer {
-    private String customerId;
+public class Customer extends NuriyaJava {
     private String name;
     private String phone;
 
-    public Customer() {
-        this.customerId = "Unknown";
-        this.name = "Unknown";
-        this.phone = "Unknown";
-    }
-
-    public Customer(String customerId, String name, String phone) {
-        this.customerId = customerId;
+    public Customer(String id, String name, String phone) {
+        super(id);
         this.name = name;
         this.phone = phone;
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
     }
 
     public String getName() {
@@ -45,21 +30,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer: " + name + " (ID: " + customerId + ", Phone: " + phone + ")";
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Customer customer = (Customer) o;
-        return Objects.equals(customerId, customer.customerId) &&
-                Objects.equals(name, customer.name) &&
-                Objects.equals(phone, customer.phone);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(customerId, name, phone);
+        return super.toString() + ", Name: " + name + ", Phone: " + phone;
     }
 }
