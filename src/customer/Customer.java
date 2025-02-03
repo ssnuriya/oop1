@@ -1,8 +1,8 @@
 package customer;
 
-import core.NuriyaJava;
+import core.RentalEntity;
 
-public class Customer extends NuriyaJava {
+public class Customer extends RentalEntity {
     private String name;
     private String phone;
 

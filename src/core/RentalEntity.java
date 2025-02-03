@@ -2,10 +2,10 @@ package core;
 
 import java.util.Objects;
 
-public class NuriyaJava {
+public class RentalEntity {
     private String id;
 
-    public NuriyaJava(String id) {
+    public RentalEntity(String id) {
         this.id = id;
     }
 
@@ -26,7 +26,7 @@ public class NuriyaJava {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        NuriyaJava that = (NuriyaJava) o;
+        RentalEntity that = (RentalEntity) o;
         return Objects.equals(id, that.id);
     }
 

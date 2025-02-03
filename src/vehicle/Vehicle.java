@@ -1,8 +1,8 @@
 package vehicle;
 
-import core.NuriyaJava;
+import core.RentalEntity;
 
-public class Vehicle extends NuriyaJava {
+public class Vehicle extends RentalEntity {
     private String model;
     private double pricePerDay;
 
